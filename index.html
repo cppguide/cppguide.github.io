@@ -8,6 +8,9 @@
 
   <!-- Replace with your own title and description. -->
   <title>The C++ Guide including C++ 11, 14, 17, 20 standards.</title>
+  <meta
+    name="keywords"
+    content="c++, c++11, c++14, c++17, c++20, stl, containers, algorithms">
   <meta name="description" content="The C++ Guide including C++ 11, 14, 17, 20 standards.">
   <meta name="robots" content="index, follow">
 
@@ -22,7 +25,7 @@
   <script>
     // Docsify Configuration (see https://docsify.js.org/#/configuration)
     window.$docsify = {
-      name: 'Simple Docsify Template',
+      name: 'The C++ Guide',
 
       // Sidebar Configuration
       auto2top: true,
@@ -30,6 +33,10 @@
       maxLevel: 0,
       // Set subMaxLevel to 0 to remove automatic display of page table of contents (TOC) in Sidebar
       subMaxLevel: 3,
+
+      alias: {
+        'README': 'introduction'
+      },
 
       // Search Plugin Configuration
       search: {
