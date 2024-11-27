@@ -108,7 +108,11 @@ for (auto& elem : vec) {
 ### Modifying a vector
 
 ```cpp
-vector<int> vec;
+vector<int> vec = {1, 2};
+// modify individual elements
+vec[0] = 10;
+vec.at(1) = 20;
+
 // Reserve 10 elements, to avoid reallocations if the size is known beforehand
 vec.reserve(10);
 // add an element to the end
@@ -140,6 +144,15 @@ vec.resize(10);
 
 // clear the vector
 vec.clear();
+```
+
+### Size and capacity operations
+
+```cpp
+vector<int> vec = {1, 2, 3, 4, 5};
+cout << vec.size() << endl;     // 5
+cout << vec.capacity() << endl; // 5
+cout << vec.empty() << endl;    // false
 ```
 
 ### Sorting a vector
