@@ -6,7 +6,6 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 
-  <!-- Replace with your own title and description. -->
   <title>The C++ Guide including C++ 11, 14, 17, 20 standards.</title>
   <meta
     name="keywords"
@@ -34,18 +33,20 @@
       // Set subMaxLevel to 0 to remove automatic display of page table of contents (TOC) in Sidebar
       subMaxLevel: 3,
 
-      alias: {
-        'README': 'introduction'
-      },
-
       // Search Plugin Configuration
       search: {
         placeholder: 'Type to search',
         noData: 'No matches found.',
         // Headline depth, 1 - 6
         depth: 2,
-      }
+      },
+      copyCode: {
+        buttonText: 'Copy to clipboard',
+        errorText: 'Error',
+        successText: 'Copied',
+      },
     };
+
   </script>
 
   <!-- Required -->
@@ -54,6 +55,8 @@
   <!-- Recommended -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+
 
 </body>
 </html>

@@ -1,34 +1,165 @@
 # Introduction to std::vector
 
-The `std::vector` is a sequence container in the C++ Standard Library that encapsulates dynamic size arrays. It is part of the `<vector>` header and provides a way to manage a collection of elements that can grow and shrink in size dynamically. The `std::vector` is one of the most commonly used containers due to its flexibility and ease of use.
+The `std::vector` is a sequence container in the C++ Standard Library that encapsulates dynamic size arrays. It is part of the `<vector>` header and provides a way to manage a collection of elements that can grow and shrink in size dynamically.
 
-## Key Features of std::vector
+## Example Usage
 
-- **Dynamic Sizing**: Unlike arrays, `std::vector` can change its size dynamically, allowing elements to be added or removed as needed.
-- **Contiguous Storage**: Elements in a `std::vector` are stored in contiguous memory locations, which means that they can be accessed using pointer arithmetic and provide cache-friendly access patterns.
-- **Efficient Access**: Provides constant time complexity for element access using the subscript operator (`[]`) or the `at()` method.
-- **Range-based Operations**: Supports a wide range of operations, including iterators, which allow for easy traversal and manipulation of elements.
-- **Automatic Memory Management**: Handles memory allocation and deallocation automatically, reducing the risk of memory leaks and other memory-related issues.
-
-## Additional Information
-
-- **Capacity and Size**: `std::vector` has a `size()` method to get the number of elements currently stored and a `capacity()` method to get the total storage capacity. The capacity is always greater than or equal to the size, and it grows automatically as elements are added.
-- **Modifiers**: Includes a variety of methods to modify the contents, such as `push_back()`, `pop_back()`, `insert()`, `erase()`, `clear()`, and `resize()`.
-- **Exception Safety**: Provides strong exception safety guarantees. If an exception is thrown during an operation, the `std::vector` remains in a valid state.
-- **Allocator Support**: Allows custom memory allocators to be used, providing flexibility in memory management strategies.
-
-## Basic Usage
-
-To use `std::vector`, you need to include the `<vector>` header and create a `std::vector` object. Here is a simple example:
+Before using `std::vector`, make sure to include the `<vector>` header:
 
 ```cpp
 #include <vector>
-#include <iostream>
+```
 
-int main() {
-    std::vector<int> vec;
-    vec.push_back(10);
-    std::cout << "Vector size: " << vec.size() << std::endl;
-    return 0;
+If you don't want to use `std::` as prefix, you can alias it:
+
+```cpp
+using namespace std;
+```
+
+NOTE: The following examples will use the alias `vector` for `std::vector` and don't include the header.
+
+### Creating a vector
+
+#### Default constructor
+
+```cpp
+vector<int> vec;
+```
+
+#### Initializer list constructor
+
+```cpp
+vector<int> vec2 = {1, 2, 3, 4, 5};
+```
+
+#### Fill constructor
+
+```cpp
+// 10 elements, each initialized to 0
+vector<int> vec3(10, 0);
+```
+
+#### Copy constructor
+
+```cpp
+vector<int> vec4(vec2);
+```
+
+#### Range constructor
+
+```cpp
+vector<int> vec5(vec2.begin(), vec2.end());
+// Partial range constructor
+vector<int> vec6(vec2.begin(), vec2.begin() + 3);
+```
+
+#### Move constructor
+
+```cpp
+vector<int> vec7(std::move(vec5));
+```
+
+### Accessing elements
+
+```cpp
+vector<int> vec = {1, 2, 3, 4, 5};
+// no bounds checking
+cout << vec[0] << endl; // 1
+// with bounds checking, throws an exception if the index is out of bounds
+cout << vec.at(0) << endl; // 1
+
+// first element
+cout << vec.front() << endl; // 1
+// last element
+cout << vec.back() << endl; // 5
+```
+
+### Iterating over a vector
+
+```cpp
+vector<int> vec = {1, 2, 3, 4, 5};
+// range-based for loop with const reference
+for (const auto& elem : vec) {
+    cout << elem << " ";
+}
+// using const iterators
+for (auto it = vec.cbegin(); it != vec.cend(); ++it) {
+    cout << *it << " ";
+}
+// using reverse const iterators
+for (auto it = vec.crbegin(); it != vec.crend(); ++it) {
+    cout << *it << " ";
+}
+
+// using non-const iterators
+for (auto it = vec.begin(); it != vec.end(); ++it) {
+    cout << *it << " ";
+}
+// using reverse non-const iterators
+for (auto it = vec.rbegin(); it != vec.rend(); ++it) {
+    cout << *it << " ";
+}
+// range-based for loop with non-const reference
+for (auto& elem : vec) {
+    cout << elem << " ";
 }
 ```
+
+### Modifying a vector
+
+```cpp
+vector<int> vec;
+// Reserve 10 elements, to avoid reallocations if the size is known beforehand
+vec.reserve(10);
+// add an element to the end
+vec.push_back(6);
+// remove the last element
+vec.pop_back();
+
+// insert an element at the beginning
+vec.insert(vec.begin(), 0);
+// insert an element at the end
+vec.insert(vec.end(), 7);
+// insert an element at the second position
+vec.insert(vec.begin() + 1, 2);
+// insert 3 elements of value 8 at the third position
+vec.insert(vec.begin() + 2, 3, 8);
+// insert elements from another vector at the fourth position
+vector<int> vec2 = {9, 10};
+vec.insert(vec.begin() + 3, vec2.begin(), vec2.end());
+
+// erase the first element
+vec.erase(vec.begin());
+// erase the last element
+vec.erase(vec.end() - 1);
+// erase the second and third elements
+vec.erase(vec.begin() + 1, vec.begin() + 3);
+
+// resize the vector to 10 elements
+vec.resize(10);
+
+// clear the vector
+vec.clear();
+```
+
+### Sorting a vector
+
+```cpp
+vector<int> vec = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5};
+
+// sort in ascending order
+sort(vec.begin(), vec.end());
+// sort in descending order using `greater`
+sort(vec.begin(), vec.end(), greater<int>());
+// sort in descending order using a lambda function
+sort(vec.begin(), vec.end(), [](int a, int b) { return a > b; });
+```
+
+## Considerations
+
+- `vector` is a contiguous container, meaning that its elements are stored in a contiguous block of memory.
+- `vector` is a dynamic array, meaning that its size can change at runtime. If the size is known beforehand, reserve the memory to avoid reallocations.
+
+## References
+
+- [cppreference.com - vector](https://en.cppreference.com/w/cpp/container/vector)
