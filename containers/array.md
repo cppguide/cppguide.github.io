@@ -16,7 +16,7 @@ If you don't want to use `std::` as prefix, you can alias it:
 using namespace std;
 ```
 
-NOTE: The following examples will use the alias `array` for `std::array` and don't include the header.
+NOTE: The following examples will use the alias `array` for `std::array` and will not include the header.
 
 ### Creating an array
 
@@ -132,6 +132,10 @@ sort(arr.begin(), arr.end(), [](int a, int b) { return a > b; });
 - `std::array` has zero overhead compared to C-style arrays while providing a safer interface.
 - Unlike C-style arrays, `std::array` knows its own size and can be safely passed to and returned from functions.
 - `std::array` is a contiguous container, meaning that its elements are stored in a contiguous block of memory.
+
+## See also
+
+- [std::vector](containers/vector)
 
 ## References
 

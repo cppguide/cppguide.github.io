@@ -16,7 +16,7 @@ If you don't want to use `std::` as prefix, you can alias it:
 using namespace std;
 ```
 
-NOTE: The following examples will use the alias `vector` for `std::vector` and don't include the header.
+NOTE: The following examples will use the alias `vector` for `std::vector` and will not include the header.
 
 ### Creating a vector
 
@@ -51,12 +51,6 @@ vector<int> vec4(vec2);
 vector<int> vec5(vec2.begin(), vec2.end());
 // Partial range constructor
 vector<int> vec6(vec2.begin(), vec2.begin() + 3);
-```
-
-#### Move constructor
-
-```cpp
-vector<int> vec7(std::move(vec5));
 ```
 
 ### Accessing elements
@@ -172,6 +166,10 @@ sort(vec.begin(), vec.end(), [](int a, int b) { return a > b; });
 
 - `vector` is a contiguous container, meaning that its elements are stored in a contiguous block of memory.
 - `vector` is a dynamic array, meaning that its size can change at runtime. If the size is known beforehand, reserve the memory to avoid reallocations.
+
+## See also
+
+- [std::array](containers/array)
 
 ## References
 
